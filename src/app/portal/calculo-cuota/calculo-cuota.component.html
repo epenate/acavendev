@@ -1,0 +1,102 @@
+<div class="container">
+    <div class="page-inner">
+        <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
+            <div>
+                <h3 class="fw-bold mb-3">Inicio</h3>
+                <h6 class="op-7 mb-2">Portal / Cálculo de cuota</h6>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Calculo de cuota</div>
+                    </div>
+                    <form (ngSubmit)="calcular()">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 col-lg-5">
+
+                                    <!-- Monto -->
+                                    <div class="form-group">
+                                        <label for="monto">Monto</label>
+                                        <input type="number" class="form-control" step="0.01" min="0" id="monto"
+                                            placeholder="0.00" [(ngModel)]="formData.monto" name="monto" required/>
+                                    </div>
+
+                                    <!-- Plazo -->
+                                    <div class="form-group">
+                                        <label for="plazo">Plazo en Meses</label>
+                                        <div class="input-group">
+                                            <input type="number" class="form-control" min="1" id="plazo"
+                                                [(ngModel)]="formData.plazo" name="plazo" required/>
+                                            <span class="input-group-text">meses</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Tasa -->
+                                    <div class="form-group">
+                                        <label for="tasa">Tasa de Interés</label>
+                                        <select class="form-control" id="tasa"
+                                                [(ngModel)]="tasa" name="tasa" required>
+                                          <option value="" disabled selected>Seleccione una tasa</option>
+                                          <option *ngFor="let t of tasas" [value]="t.interes">
+                                            {{ t.ninteres }}
+                                          </option>
+                                        </select>
+                                    </div>                                 
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-action d-flex align-items-center">
+                            <!-- Botón Submit -->
+                            <button class="btn btn-success me-3" type="submit">Calcular</button>
+                        
+                            <!-- Cuota Calculada -->
+                            <div *ngIf="cuotaCalculada !== null" class="cuota-calculada p-2 rounded">
+                                <strong>Cuota:</strong> {{ cuotaCalculada.toFixed(2) }} $
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Toast de advertencia -->
+<div
+  id="toastAdvertencia"
+  class="toast align-items-center text-bg-warning border-0 position-fixed bottom-0 end-0 m-3"
+  role="alert"
+  aria-live="assertive"
+  aria-atomic="true"
+>
+  <div class="d-flex">
+    <div class="toast-body">
+      ⚠️ Faltan datos en el formulario
+    </div>
+    <button
+      type="button"
+      class="btn-close btn-close-white me-2 m-auto"
+      data-bs-dismiss="toast"
+      aria-label="Close"
+    ></button>
+  </div>
+</div>
+
+<style>
+    .cuota-calculada {
+    background-color: #e0f7fa; /* color de fondo claro */
+    color: #00796b;            /* texto verde oscuro */
+    font-size: 1.2rem;          /* un poco más grande */
+    font-weight: bold;           /* negrita */
+    min-width: 150px;            /* ancho mínimo */
+    text-align: center;          /* centrado */
+}
+
+</style>

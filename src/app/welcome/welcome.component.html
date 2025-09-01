@@ -1,0 +1,370 @@
+<div
+  id="spinner"
+  [class.show]="loadingResources"
+  class="bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
+>
+  <div
+    class="spinner-border text-primary"
+    style="width: 3rem; height: 3rem;"
+    role="status"
+  >
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+<!-- Spinner End -->
+
+<div *ngIf="!loadingResources">
+    <!-- Topbar Start -->
+    <div class="container-fluid topbar px-0 d-none d-lg-block">
+        <div class="container px-0">
+            <div class="row gx-0 align-items-center" style="height: 45px;">
+                <div class="col-lg-8 text-center text-lg-start mb-lg-0">
+                    <div class="d-flex flex-wrap">
+                        <a href="https://maps.app.goo.gl/VgFgAZAoAjrYBc1v9" target="_blank" class="text-muted me-4"><i class="fas fa-map-marker-alt text-primary me-2"></i>Ubicacion</a>
+                        <a href="#" class="text-muted me-4"><i class="fas fa-phone-alt text-primary me-2"></i>(503) 2254-3200</a>
+                        <a href="#" class="text-muted me-0"><i class="fas fa-envelope text-primary me-2"></i>informacion&#64;acaven.com</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-center text-lg-end">
+                    <div class="d-flex align-items-center justify-content-end">
+                        <a href="https://www.facebook.com/tucoop.acavenderlsv" target="_blank" class="btn btn-primary btn-square rounded-circle nav-fill me-3"><i class="fab fa-facebook-f text-white"></i></a>
+                        <a href="https://www.instagram.com/acaven_es/" target="_blank" class="btn btn-primary btn-square rounded-circle nav-fill me-3"><i class="fab fa-instagram text-white"></i></a>
+                        <a href="#" class="btn btn-primary btn-square rounded-circle nav-fill me-3"><i class="fab fa-brands fa-apple text-white"></i></a>
+                        <a href="https://play.google.com/store/apps/details?id=com.acaven.appsv&pcampaignid=web_share" target="_blank" class="btn btn-primary btn-square rounded-circle nav-fill me-0"><i class="fa-solid fa-mobile-screen text-white"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid sticky-top px-0">
+        <div class="position-absolute bg-dark" style="left: 0; top: 0; width: 100%; height: 100%;">
+        </div>    
+        <nav class="navbar navbar-expand-lg navbar-dark bg-white py-3 px-4">
+
+            <a href="index.html" class="navbar-brand d-flex align-items-center p-0">
+                <img src="/assets/plantilla-welcome/img/logocopia.png" alt="Logo" style="height: 50px;" class="me-2">
+                <h1 class="text-primary m-0">Acaven de R.L</h1>
+            </a>
+
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto py-0">
+                    <a [routerLink]="['/welcome/home']" class="nav-item nav-link" routerLinkActive="active">Inicio</a>
+                    <!-- <a [routerLink]="['/welcome/about']" class="nav-item nav-link" routerLinkActive="active">Nosotros</a> -->
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Nosotros</a>
+                        <div class="dropdown-menu m-0">
+                            <a [routerLink]="['/welcome/about']" class="dropdown-item">Sobre nosotros</a>
+                            <a [routerLink]="['/welcome/history']" class="dropdown-item">Historia</a>
+                            <a [routerLink]="['/welcome/mision&vision']" class="dropdown-item">Mision y Vision</a>
+                            <a [routerLink]="['/welcome/valores']" class="dropdown-item">Valores</a>
+                            <a [routerLink]="['/welcome/respaldo']" class="dropdown-item">Nuestro respaldo</a>
+                        </div>
+                    </div>
+
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Servicios</a>
+                        <div class="dropdown-menu m-0">
+                            <a [routerLink]="['/welcome/services']" class="dropdown-item">Ahorros y creditos</a>
+                            <a [routerLink]="['/welcome/solicitud-credito']" class="dropdown-item">Solicitud de Credito</a>
+                        </div>
+                    </div>
+
+                    <a [routerLink]="['/welcome/rse']" class="nav-item nav-link" routerLinkActive="active">RSE</a>
+                    <a [routerLink]="['/welcome/documentos']" class="nav-item nav-link" routerLinkActive="active">Documentos</a>
+                    <a [routerLink]="['/welcome/contact']" class="nav-item nav-link" routerLinkActive="active">Contacto</a>
+                </div>
+                <div class="d-flex align-items-center flex-nowrap pt-xl-0">
+                    <!-- <button class="btn btn-primary btn-md-square mx-2" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search"></i></button> -->
+                    <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 ms-2 flex-wrap flex-sm-shrink-0" data-bs-toggle="modal" data-bs-target="#loginModal">Iniciar Sesion</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- Navbar & Hero End -->
+
+    <!-- Modal Search Start -->
+    <!-- <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content rounded-0">
+                <div class="modal-header">
+                    <h4 class="modal-title mb-0" id="exampleModalLabel">Inicio de Sesion</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex align-items-center">
+                    <div class="input-group w-75 mx-auto d-flex">
+                        <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
+                        <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- Modal Search End -->
+
+    <!-- Modal Login Start -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content rounded-0">
+            <div class="modal-header">
+            <h4 class="modal-title mb-0" id="loginModalLabel">ACAVEN DE R.L</h4>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+    
+            <div class="modal-body d-flex justify-content-center align-items-center" style="min-height: 100vh; background: url('https://res.cloudinary.com/dk9edvvmw/image/upload/v1753291357/Captura_de_pantalla_2025-07-23_112119_wftmhl.png') center center/cover no-repeat;">
+                <div class="modal-login-box">
+                    <form class="modal-login-form" (ngSubmit)="irAAuthentication(usernameInput.value, passwordInput.value)" #loginForm="ngForm">
+                        <h2 class="modal-login-title">Iniciar Sesion</h2>
+                    
+                        <p class="text-warning">Si eres un asociado de nosotros puedes iniciar Sesion</p><br>
+                    
+                        <label for="modal-login-username" class="text-white">Ingresa tu número de DUI con guion</label>
+                        <div class="modal-login-input-group">
+                        <span class="modal-login-icon">👤</span>
+                        <input
+                            type="text"
+                            id="modal-login-username"
+                            name="dui"
+                            placeholder="Ej: 12345678-9"
+                            class="modal-login-input"
+                            required
+                            pattern="^\d{8}-\d{1}$"
+                            [(ngModel)]="loginData.dui"
+                            #usernameInput="ngModel"
+                        />
+                        </div>
+                        <div *ngIf="usernameInput.invalid && (usernameInput.dirty || usernameInput.touched)" class="text-danger small mt-1">
+                        <div *ngIf="usernameInput.errors?.['required']">El DUI es obligatorio.</div>
+                        <!-- <div *ngIf="usernameInput.errors?.['pattern']">Formato inválido. Debe ser 12345678-9.</div> -->
+                        <div *ngIf="usernameInput.errors?.['pattern']">Formato inválido. Debe ser 06247181-9.</div>
+                        </div>
+                    
+                        <label for="modal-login-password" class="text-white">Ingresa tu contraseña</label>
+                        <div class="modal-login-input-group">
+                        <span class="modal-login-icon">🔒</span>
+                        <input
+                            type="password"
+                            id="modal-login-password"
+                            #passwordInput
+                            class="modal-login-input"
+                            placeholder="Contraseña"
+                            required
+                        />
+                        </div>
+                    
+                        <div class="modal-login-options">
+                        <a href="#">¿Olvidaste tu contraseña?</a>
+                        <label class="text-white"><input type="checkbox"> Remember Me</label>
+                        </div>
+                    
+                        <button type="submit" class="modal-login-btn" [disabled]="loginForm.invalid">LOGIN</button>
+                        <div *ngIf="loginError" class="text-danger mt-2 text-center">
+                            {{ loginError }}
+                        </div>
+                        
+                        <p class="text-white">¿No tienes cuenta? <a href="#">Regístrate</a></p>
+                    </form>
+                                    
+                </div>
+            </div>
+            
+        </div>
+        </div>
+    </div>
+    <!-- Modal Login End -->
+
+    <router-outlet></router-outlet>
+
+    <!-- Footer Start -->
+    <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
+        <div class="container py-5">
+            <div class="row g-5 justify-content-center">
+                <!-- <div class="col-md-6 col-lg-6 col-xl-3">
+                    <div class="footer-item d-flex flex-column">
+                        <div class="footer-item">
+                            <h4 class="text-white mb-4">Newsletter</h4>
+                            <p class="mb-3">Dolor amet sit justo amet elitr clita ipsum elitr est.Lorem ipsum dolor sit amet, consectetur adipiscing elit consectetur adipiscing elit.</p>
+                            <div class="position-relative mx-auto rounded-pill">
+                                <input class="form-control rounded-pill w-100 py-3 ps-4 pe-5" type="text" placeholder="Enter your email">
+                                <button type="button" class="btn btn-primary rounded-pill position-absolute top-0 end-0 py-2 mt-2 me-2">SignUp</button>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="col-md-6 col-lg-6 col-xl-4">
+                    <div class="footer-item d-flex flex-column">
+                        <h4 class="text-white mb-4">Explorar</h4>
+                        <a [routerLink]="['/welcome/home']"><i class="fas fa-angle-right me-2"></i> Inicio</a>
+                        <a [routerLink]="['/welcome/services']"><i class="fas fa-angle-right me-2"></i> Ahorros y creditos</a>
+                        <a [routerLink]="['/welcome/solicitud-credito']"><i class="fas fa-angle-right me-2"></i> Solicitud de Credito</a>
+                        <a [routerLink]="['/welcome/history']"><i class="fas fa-angle-right me-2"></i> Historia</a>
+                        <a [routerLink]="['/welcome/mision&vision']"><i class="fas fa-angle-right me-2"></i> Mision y Vision</a>
+                        <a [routerLink]="['/welcome/valores']"><i class="fas fa-angle-right me-2"></i> Valores</a>
+                        <a [routerLink]="['/welcome/respaldo']"><i class="fas fa-angle-right me-2"></i> Nuestro respaldo</a>
+                        <a [routerLink]="['/welcome/rse']"><i class="fas fa-angle-right me-2"></i> RSE</a>
+                        <a [routerLink]="['/welcome/documentos']"><i class="fas fa-angle-right me-2"></i> Documentos</a>
+                        <a [routerLink]="['/welcome/contact']"><i class="fas fa-angle-right me-2"></i> Contactanos</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xl-4">
+                    <div class="footer-item d-flex flex-column">
+                        <h4 class="text-white mb-4">informacion de contacto</h4>
+                        <a><i class="fa fa-map-marker-alt me-2"></i>Centro comercial Loma Linda, Local 23 A en Calle Loma Linda, El Salvador, C.A, Alameda Manuel Enrique Araujo 10A, San Salvador</a>
+                        <a><i class="fas fa-envelope me-2"></i> informacion&#64;acaven.com</a>
+                        <a><i class="fas fa-envelope me-2"></i> recepcion&#64;acaven.com</a>
+                        <a><i class="fas fa-phone me-2"></i>Telefono (503) 2254-3200</a>
+                        <a class="mb-3"><i class="fa-brands fa-whatsapp me-2"></i>Whatsapp (503) 6995-3333</a>
+                        <div class="d-flex align-items-center">
+                            <a class="btn btn-light btn-md-square me-2" href="https://www.facebook.com/tucoop.acavenderlsv" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-light btn-md-square me-2" href="https://www.instagram.com/acaven_es/" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a class="btn btn-light btn-md-square me-2" href=""><i class="fab fa-brands fa-apple text-white" target="_blank"></i></a>
+                            <a class="btn btn-light btn-md-square me-0" href=""><i class="fa-solid fa-mobile-screen text-white" target="_blank"></i></a>
+                        </div>
+                        
+                    </div>
+                </div>
+                <!-- <div class="col-md-6 col-lg-6 col-xl-4">
+                    <div class="footer-item-post d-flex flex-column">
+                        <h4 class="text-white mb-4">Popular Post</h4>
+                        <div class="d-flex flex-column mb-3">
+                            <p class="text-uppercase text-primary mb-2">Investment</p>
+                            <a href="#" class="text-body">Revisiting Your Investment & Distribution Goals</a>
+                        </div>
+                        <div class="d-flex flex-column mb-3">
+                            <p class="text-uppercase text-primary mb-2">Business</p>
+                            <a href="#" class="text-body">Dimensional Fund Advisors Interview with Director</a>
+                        </div>
+                        <div class="footer-btn text-start">
+                            <a href="#" class="btn btn-light rounded-pill px-4">View All Post <i class="fa fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="col text-center mb-md-0">
+                    <span class="text-body"><a href="#" class="border-bottom text-primary"><i class="fas fa-copyright text-light me-2"></i>Acaven.com</a>, All right reserved.</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-lg-square back-to-top"><i class="fa fa-arrow-up"></i></a>   
+</div>
+
+<!-- JavaScript Libraries -->
+
+
+
+<!-- Template Javascript -->
+
+<style>
+.modal-header,
+.modal-header h4,
+.modal-header .modal-title {
+  background-color: #00027e;
+  color: white !important;
+}
+
+.modal-login-box {
+  background-color: rgba(35, 0, 96, 0.95);
+  padding: 40px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+  color: #333;
+  font-family: 'Roboto', sans-serif;
+}
+
+.modal-login-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #00bfff;
+}
+
+.modal-login-form label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.modal-login-input-group {
+  display: flex;
+  align-items: center;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  padding: 5px 10px;
+}
+
+.modal-login-icon {
+  margin-right: 8px;
+  color: #00bfff;
+  font-size: 18px;
+}
+
+.modal-login-input-group input {
+  border: none;
+  outline: none;
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  background: transparent;
+}
+
+.modal-login-options {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.modal-login-options a {
+  color: #00bfff;
+  text-decoration: none;
+}
+
+.modal-login-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background-color: #00bfff;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.modal-login-btn:hover {
+  background-color: #009acd;
+}
+
+.modal-login-form p {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 15px;
+}
+
+.modal-login-form a {
+  color: #00bfff;
+  text-decoration: none;
+}
+
+</style>

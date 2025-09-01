@@ -1,0 +1,90 @@
+<div class="container">
+    <div class="page-inner">
+        <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
+            <div>
+                <h3 class="fw-bold mb-3">Inicio</h3>
+                <h6 class="op-7 mb-2">Portal / Cambio de contraseña</h6>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Cambio de contraseña</div>
+                    </div>
+                    <form (ngSubmit)="cambiarClave()">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 col-lg-5">
+
+                                    <!-- Clave Actual -->
+                                    <div class="form-group">
+                                        <label for="claveAnterior">Clave actual</label>
+                                        <input [type]="mostrarClave ? 'text' : 'password'" class="form-control"
+                                            id="claveAnterior" placeholder="Ingrese su clave actual"
+                                            [(ngModel)]="claveAnterior" name="claveAnterior" required />
+                                    </div>
+
+                                    <!-- Nueva Clave -->
+                                    <div class="form-group">
+                                        <label for="nuevaClave">Nueva clave</label>
+                                        <input [type]="mostrarClave ? 'text' : 'password'" class="form-control"
+                                            id="nuevaClave" placeholder="Ingrese su nueva clave"
+                                            [(ngModel)]="nuevaClave" name="nuevaClave" required />
+                                    </div>
+
+                                    <!-- Confirmar Clave -->
+                                    <div class="form-group">
+                                        <label for="confirmation">Confirmar nueva clave</label>
+                                        <input [type]="mostrarClave ? 'text' : 'password'" class="form-control"
+                                            id="confirmation" placeholder="Confirme su nueva clave"
+                                            [(ngModel)]="confirmation" name="confirmation" required />
+                                    </div>
+
+                                    <!-- Checkbox para mostrar/ocultar -->
+                                    <div class="form-check mt-2">
+                                        <input type="checkbox" class="form-check-input" id="mostrarClave"
+                                            [(ngModel)]="mostrarClave" name="mostrarClave" />
+                                        <label class="form-check-label" for="mostrarClave">
+                                            Mostrar contraseñas
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-action">
+                            <!-- Botón Submit -->
+                            <button class="btn btn-success me-3" type="submit">Cambiar contraseña</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Toast de advertencia -->
+<div
+  id="toastAdvertencia"
+  class="toast align-items-center text-bg-warning border-0 position-fixed bottom-0 end-0 m-3"
+  role="alert"
+  aria-live="assertive"
+  aria-atomic="true"
+>
+  <div class="d-flex">
+    <div class="toast-body">
+      ⚠️ Faltan datos en el formulario
+    </div>
+    <button
+      type="button"
+      class="btn-close btn-close-white me-2 m-auto"
+      data-bs-dismiss="toast"
+      aria-label="Close"
+    ></button>
+  </div>
+</div>

@@ -1,0 +1,238 @@
+<div class="container">
+    <div class="page-inner">
+        <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
+            <div>
+                <h3 class="fw-bold mb-3">Inicio</h3>
+                <h6 class="op-7 mb-2">Portal / Inicio</h6>
+            </div>
+            <div class="ms-md-auto py-2 py-md-0">
+                <!-- <a href="#" class="btn btn-label-info btn-round me-2">Manage</a>
+                <a href="#" class="btn btn-primary btn-round">Add Customer</a> -->
+            </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <div class="card card-stats card-round">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <!-- <div class="col-icon">
+                    <div
+                      class="icon-big text-center icon-primary bubble-shadow-small"
+                    >
+                      <i class="fas fa-users"></i>
+                    </div>
+                  </div> -->
+                  <div class="col col-stats ms-3 ms-sm-0">
+                    <div class="numbers">
+                      <!-- <p class="card-category">Visitors</p> -->
+                      <strong><p>{{ nombre_asociado }}</p></strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6" *ngFor="let cuenta of cuentas">
+            <div class="card card-stats card-round">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <div class="col-icon">
+                    <div class="icon-big text-center bubble-shadow-small"
+                         [ngClass]="getIconClass(cuenta.Tipo)">
+                      <i class="fas fa-dollar-sign"></i>
+                    </div>
+                  </div>
+                  <div class="col col-stats ms-2 ms-sm-0">
+                    <div class="numbers">
+                      <p class="card-category">Cuenta de {{ cuenta.Tipo }}</p>
+                      <h4 class="card-title">${{ cuenta.Saldo.toFixed(2) }}</h4>
+                      <strong><small class="text-muted">{{ cuenta.Codigo }}</small></strong><br>
+                      
+                      <!-- Botón Ver Movimientos -->
+                      <button class="btn btn-outline-primary" 
+                              style="padding: 2px 6px; font-size: 0.75rem; margin-top: 3px;"
+                              (click)="abrirModalMovimientos(cuenta)">
+                        Ver Movimientos
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>        
+          
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-round">
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal Ver Movimientos -->
+<div class="modal fade" id="modalMovimientos" tabindex="-1" aria-labelledby="modalMovimientosLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Movimientos de cuenta de {{ cuentaSeleccionada?.Tipo }} {{ cuentaSeleccionada?.Codigo }}</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        
+        <!-- Formulario de filtros -->
+        <form (ngSubmit)="consultarMovimientos()" class="row g-2 mb-3">
+          <div class="col-md-3">
+            <label class="form-label">Desde</label>
+            <input type="date" class="form-control" [(ngModel)]="filtro.desde" name="desde">
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Hasta</label>
+            <input type="date" class="form-control" [(ngModel)]="filtro.hasta" name="hasta">
+          </div>
+          <div class="col-md-2">
+            <input type="hidden" [(ngModel)]="filtro.ultimos" name="ultimos">
+          </div>
+          <div class="col-md-2 d-flex align-items-end">
+            <button type="submit" class="btn btn-primary w-100">Consultar</button>
+          </div>
+        </form>
+
+        <!-- Contenedor de la tabla -->
+        <div class="table-responsive" style="max-height:400px; overflow-y:auto;">
+          <div [innerHTML]="tablaMovimientos"></div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .card-stats .row.align-items-center {
+  display: flex;
+  align-items: stretch; /* la fila toma la altura del contenido más alto */
+}
+
+.card-stats .col-icon {
+  width: 100px; /* puedes ajustar el ancho */
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-stats .icon-big {
+  width: 150%;
+  height: 150%;
+  font-size: 2em; /* se puede ajustar o hacer responsive */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-header,
+.modal-header h4,
+.modal-header .modal-title {
+  background-color: #00027e;
+  color: white !important;
+}
+
+.modal-login-box {
+  background-color: rgba(35, 0, 96, 0.95);
+  padding: 40px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+  color: #333;
+  font-family: 'Roboto', sans-serif;
+}
+
+.modal-login-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #00bfff;
+}
+
+.modal-login-form label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.modal-login-input-group {
+  display: flex;
+  align-items: center;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  padding: 5px 10px;
+}
+
+.modal-login-icon {
+  margin-right: 8px;
+  color: #00bfff;
+  font-size: 18px;
+}
+
+.modal-login-input-group input {
+  border: none;
+  outline: none;
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  background: transparent;
+}
+
+.modal-login-options {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.modal-login-options a {
+  color: #00bfff;
+  text-decoration: none;
+}
+
+.modal-login-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background-color: #00bfff;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.modal-login-btn:hover {
+  background-color: #009acd;
+}
+
+.modal-login-form p {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 15px;
+}
+
+.modal-login-form a {
+  color: #00bfff;
+  text-decoration: none;
+}
+
+</style>

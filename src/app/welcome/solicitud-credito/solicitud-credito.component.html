@@ -1,0 +1,65 @@
+<!-- Header Start -->
+<div class="container-fluid bg-breadcrumb">
+  <div class="bg-breadcrumb-single"></div>
+  <div class="container text-center py-5" style="max-width: 900px;">
+    <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">Solicitud de Credito</h4>
+    <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+      <li class="breadcrumb-item"><a [routerLink]="['/welcome/inicio']">Inicio</a></li>
+      <li class="breadcrumb-item active text-primary"><a [routerLink]="['/welcome/solicitud-credito']">Solicitud de credito</a></li>
+    </ol>    
+  </div>
+</div>
+<!-- Header End -->
+
+<!-- Contact Start -->
+<div class="container-fluid contact bg-light py-5">
+  <div class="container py-5">
+    <div class="row g-5">
+      
+      <!-- Columna izquierda -->
+      <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.1s">
+        <div class="contact-item">
+          <div class="pb-5">
+            <h2 class="display-4 mb-2">¿Cómo solicitar un crédito?</h2>
+            <p class="mb-0">
+              Llena el formulario de solicitud de crédito y nuestro equipo se pondrá en contacto contigo para darle seguimiento a tu solicitud.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Columna derecha con iframe -->
+      <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.2s">
+        <div class="iframe-container">
+          <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe0Wh81ka_DZHAK_Yit8laSB3_MFKMtvwzqz8EjpHYjAsvStQ/viewform?embedded=true&entry.1157051349=No"
+                  frameborder="0" marginheight="0" marginwidth="0">
+            Cargando…
+          </iframe>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Contact End -->
+
+<style>
+/* Contenedor flexible para el iframe */
+.iframe-container {
+  width: 100%;
+  overflow: hidden; /* evita scroll interno */
+}
+
+.iframe-container iframe {
+  width: 100%;
+  height: 4000px; /* ajusta según lo largo del form */
+  border: 0;
+}
+
+/* En pantallas pequeñas darle más alto si el form crece */
+@media (max-width: 768px) {
+  .iframe-container iframe {
+    height: 3500px;
+  }
+}
+</style>

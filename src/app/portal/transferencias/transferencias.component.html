@@ -1,0 +1,241 @@
+<div class="container">
+    <div class="page-inner">
+        <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
+            <div>
+                <h3 class="fw-bold mb-3">Inicio</h3>
+                <h6 class="op-7 mb-2">Portal / Transferencias</h6>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Transferencias</div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-5">
+                                <form (ngSubmit)="validarDatosTransferencia()">
+                                    <!-- Cuenta Origen -->
+                                    <div class="form-group">
+                                      <label for="cuentaOrigen">Cuenta Origen</label>
+                                      <input type="text" class="form-control" [value]="cuentaOrigen" readonly />
+                                    </div>
+                                  
+                                    <!-- Cuenta Destino -->
+                                    <div class="form-group">
+                                      <label for="cuentaDestino">Destino</label>
+                                      <select class="form-control" [(ngModel)]="cuentaDestinoCodigo" name="cuentaDestino">
+                                        <option *ngFor="let cuenta of cuentasDestino" [value]="cuenta.codigo">
+                                          {{ cuenta.texto }}
+                                        </option>
+                                      </select>                                               
+                                    </div>
+                                  
+                                    <!-- Concepto -->
+                                    <div class="form-group">
+                                      <label for="concepto">Concepto</label>
+                                      <input type="text" class="form-control" [(ngModel)]="concepto" name="concepto" placeholder="Ingrese concepto" />
+                                    </div>
+                                  
+                                    <!-- Monto -->
+                                    <div class="form-group">
+                                      <label for="monto">Monto</label>
+                                      <input type="number" step="0.01" class="form-control" [(ngModel)]="monto" name="monto" placeholder="0.00" />
+                                    </div>
+                                  
+                                    <div class="card-action mt-3">
+                                      <!-- Botón Submit -->
+                                      <button class="btn btn-success me-3" type="submit">Transferir</button>
+                                    </div>                                  
+                                </form>
+                                  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de confirmación -->
+<div class="modal fade" id="confirmTransferModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form (ngSubmit)="validarPassword()">
+          <div class="modal-header">
+            <h5 class="modal-title">Confirmación de Transferencia</h5>
+            <!-- Quitar botón X -->
+            <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button> -->
+          </div>
+  
+          <div class="modal-body">
+            <p>
+              Confirmación de transferencia de cuenta de ahorros <strong>{{ cuentaOrigenCodigo }}</strong> 
+              a cuenta de {{tipoCtaDestinoTexto}} <strong>{{ cuentaDestinoCodigo }}</strong> 
+              por el monto de <strong>${{ monto.toFixed(2) }}</strong>
+            </p>
+  
+            <!-- Input password -->
+            <div class="mb-3">
+              <label for="passwordConfirm" class="form-label">Ingrese su contraseña</label>
+              <input type="password" id="passwordConfirm" class="form-control"
+                     [(ngModel)]="passwordUsuario" name="passwordUsuario" placeholder="Contraseña" />
+              <div *ngIf="mensajePassword" class="text-danger mt-1">
+                {{ mensajePassword }}
+              </div>
+            </div>
+          </div>
+  
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="cerrarModal()">Cancelar</button>
+            <button type="submit" class="btn btn-success">Confirmar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+</div>
+    
+<!-- Toast de advertencia -->
+<div
+  id="toastAdvertencia"
+  class="toast align-items-center text-bg-warning border-0 position-fixed bottom-0 end-0 m-3"
+  role="alert"
+  aria-live="assertive"
+  aria-atomic="true"
+>
+  <div class="d-flex">
+    <div class="toast-body">
+      ⚠️ Faltan datos en el formulario
+    </div>
+    <button
+      type="button"
+      class="btn-close btn-close-white me-2 m-auto"
+      data-bs-dismiss="toast"
+      aria-label="Close"
+    ></button>
+  </div>
+</div>
+
+<style>
+    .card-stats .row.align-items-center {
+    display: flex;
+    align-items: stretch; /* la fila toma la altura del contenido más alto */
+  }
+  
+  .card-stats .col-icon {
+    width: 100px; /* puedes ajustar el ancho */
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .card-stats .icon-big {
+    width: 150%;
+    height: 150%;
+    font-size: 2em; /* se puede ajustar o hacer responsive */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .modal-header,
+  .modal-header h4,
+  .modal-header .modal-title {
+    background-color: #00027e;
+    color: white !important;
+  }
+  
+  .modal-login-box {
+    background-color: rgba(35, 0, 96, 0.95);
+    padding: 40px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .modal-login-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #00bfff;
+  }
+  
+  .modal-login-form label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .modal-login-input-group {
+    display: flex;
+    align-items: center;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    padding: 5px 10px;
+  }
+  
+  .modal-login-icon {
+    margin-right: 8px;
+    color: #00bfff;
+    font-size: 18px;
+  }
+  
+  .modal-login-input-group input {
+    border: none;
+    outline: none;
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    background: transparent;
+  }
+  
+  .modal-login-options {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+  
+  .modal-login-options a {
+    color: #00bfff;
+    text-decoration: none;
+  }
+  
+  .modal-login-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background-color: #00bfff;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .modal-login-btn:hover {
+    background-color: #009acd;
+  }
+  
+  .modal-login-form p {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 15px;
+  }
+  
+  .modal-login-form a {
+    color: #00bfff;
+    text-decoration: none;
+  }
+  
+  </style>
+  
